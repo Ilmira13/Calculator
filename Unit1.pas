@@ -174,6 +174,8 @@ end;
 
 procedure TForm1.Button5Click(Sender: TObject);
 begin
+  QueryPerformanceFrequency(f);
+  QueryPerformanceCounter(t);
    case c of
      {+} 1 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) + StrToFloat(a));
      {-} 2 :
@@ -189,21 +191,19 @@ begin
                end;
      {*} 4 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) * StrToFloat(a));
    end;
-
-
-
+  QueryPerformanceCounter(tt);
+  CalculateAndShowMethodTime(f, t, tt);
+  Edit1.Text := Edit1.Text + '; '; // можно вводить новое выражени без очистки
+  a := '';
+  b := '';
 end;
 
 
 procedure TForm1.Button6Click(Sender: TObject);
 begin
-  QueryPerformanceFrequency(f);
-  QueryPerformanceCounter(t);
   Edit1.Text := '';
   a := '';
   b := '';
-  QueryPerformanceCounter(tt);
-  CalculateAndShowMethodTime(f, t, tt);
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
