@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Calculator'
-  ClientHeight = 432
-  ClientWidth = 718
+  ClientHeight = 326
+  ClientWidth = 265
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,15 +14,15 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object Edit1: TEdit
-    Left = 192
-    Top = 152
+    Left = 8
+    Top = 136
     Width = 237
-    Height = 21
+    Height = 58
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 240
-    Top = 271
+    Left = 8
+    Top = 231
     Width = 75
     Height = 25
     Caption = '+'
@@ -30,8 +30,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 304
-    Top = 302
+    Left = 8
+    Top = 262
     Width = 75
     Height = 25
     Caption = '-'
@@ -39,8 +39,8 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 354
-    Top = 333
+    Left = 8
+    Top = 293
     Width = 75
     Height = 25
     Caption = '/'
@@ -48,16 +48,17 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 192
-    Top = 240
+    Left = 8
+    Top = 200
     Width = 75
     Height = 25
     Caption = '*'
     TabOrder = 4
+    OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 192
-    Top = 333
+    Left = 170
+    Top = 231
     Width = 75
     Height = 25
     Caption = '='
@@ -65,129 +66,129 @@ object Form1: TForm1
     OnClick = Button5Click
   end
   object Button6: TButton
-    Left = 354
-    Top = 240
+    Left = 170
+    Top = 200
     Width = 75
     Height = 25
     Caption = 'Clear all'
     TabOrder = 6
     OnClick = Button6Click
   end
-  object Button7: TButton
-    Left = 192
-    Top = 56
-    Width = 75
-    Height = 25
-    Caption = '0'
-    TabOrder = 7
-    OnClick = Button7Click
-  end
   object Button8: TButton
-    Left = 273
-    Top = 56
+    Left = 170
+    Top = 105
     Width = 75
     Height = 25
     Caption = '1'
-    TabOrder = 8
+    TabOrder = 7
     OnClick = Button8Click
   end
   object Button9: TButton
-    Left = 354
-    Top = 56
+    Left = 8
+    Top = 74
     Width = 75
     Height = 25
     Caption = '2'
-    TabOrder = 9
+    TabOrder = 8
     OnClick = Button9Click
   end
   object Button10: TButton
-    Left = 192
-    Top = 87
+    Left = 89
+    Top = 74
     Width = 75
     Height = 25
     Caption = '3'
-    TabOrder = 10
+    TabOrder = 9
     OnClick = Button10Click
   end
   object Button11: TButton
-    Left = 273
-    Top = 87
+    Left = 170
+    Top = 74
     Width = 75
     Height = 25
     Caption = '4'
-    TabOrder = 11
+    TabOrder = 10
     OnClick = Button11Click
   end
   object Button12: TButton
-    Left = 354
-    Top = 87
+    Left = 8
+    Top = 43
     Width = 75
     Height = 25
     Caption = '5'
-    TabOrder = 12
+    TabOrder = 11
     OnClick = Button12Click
   end
   object Button13: TButton
-    Left = 192
-    Top = 118
+    Left = 170
+    Top = 43
     Width = 75
     Height = 25
     Caption = '6'
-    TabOrder = 13
+    TabOrder = 12
     OnClick = Button13Click
   end
   object Button14: TButton
-    Left = 273
-    Top = 118
+    Left = 8
+    Top = 12
     Width = 75
     Height = 25
     Caption = '7'
-    TabOrder = 14
+    TabOrder = 13
     OnClick = Button14Click
   end
   object Button15: TButton
-    Left = 354
-    Top = 118
+    Left = 89
+    Top = 12
     Width = 75
     Height = 25
     Caption = '8'
-    TabOrder = 15
+    TabOrder = 14
     OnClick = Button15Click
   end
   object Button16: TButton
-    Left = 256
-    Top = 25
+    Left = 170
+    Top = 12
     Width = 75
     Height = 25
     Caption = '9'
-    TabOrder = 16
+    TabOrder = 15
     OnClick = Button16Click
   end
-  object Button17: TButton
-    Left = 488
-    Top = 87
-    Width = 75
-    Height = 25
-    Caption = '0'
-    TabOrder = 17
-    OnClick = Button17Click
-  end
   object Button18: TButton
-    Left = 488
-    Top = 184
+    Left = 89
+    Top = 105
     Width = 75
     Height = 25
     Caption = '.'
-    TabOrder = 18
+    TabOrder = 16
     OnClick = Button18Click
   end
   object Button19: TButton
-    Left = 496
-    Top = 280
+    Left = 170
+    Top = 262
     Width = 75
     Height = 25
     Caption = '<-'
-    TabOrder = 19
+    TabOrder = 17
     OnClick = Button19Click
+  end
+  object Button17: TButton
+    Left = 8
+    Top = 105
+    Width = 75
+    Height = 25
+    Caption = '0'
+    TabOrder = 18
+    OnClick = Button17Click
+  end
+  object Button7: TButton
+    Left = 170
+    Top = 293
+    Width = 75
+    Height = 25
+    Caption = 'Hi'
+    TabOrder = 19
+    OnClick = Button7Click
   end
 end

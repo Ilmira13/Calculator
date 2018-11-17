@@ -15,7 +15,6 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
     Button8: TButton;
     Button9: TButton;
     Button10: TButton;
@@ -27,7 +26,8 @@ type
     Button16: TButton;
     Button18: TButton;
     Button19: TButton;
-    procedure Button7Click(Sender: TObject);
+    Button17: TButton;
+    Button7: TButton;
     procedure Button8Click(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure Button10Click(Sender: TObject);
@@ -45,6 +45,9 @@ type
     procedure Button17Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button7Click(Sender: TObject);
+
   private
     { Private declarations }
   public
@@ -161,21 +164,30 @@ begin
   c := 3;
  end;
 
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  Edit1.Text := Edit1.Text + ' * ';
+  b := a;
+  a := '';
+  c := 4;
+end;
+
 procedure TForm1.Button5Click(Sender: TObject);
 begin
    case c of
-     {+} 1 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) + StrToFloat(b));
+     {+} 1 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) + StrToFloat(a));
      {-} 2 :
-             Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) - StrToFloat(b));
+             Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) - StrToFloat(a));
      {/} 3 :
-               if StrToFloat(b) <> 0 then
+               if StrToFloat(a) <> 0 then
                begin
-                 Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) / StrToFloat(b));
+                 Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) / StrToFloat(a));
                end
                else
                begin
                ShowMessage('Кто разрешил на ноль делить?');
                end;
+     {*} 4 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) * StrToFloat(a));
    end;
 
 
@@ -188,14 +200,15 @@ begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
   Edit1.Text := '';
+  a := '';
+  b := '';
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
 begin
-  a := a + '0';
-  Edit1.Text := Edit1.Text + '0';
+  ShowMessage(DateToStr(Date) + ' ' + TimeToStr(Time));
 end;
 
 procedure TForm1.Button8Click(Sender: TObject);
