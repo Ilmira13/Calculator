@@ -43,6 +43,8 @@ type
     procedure Button6Click(Sender: TObject);
     procedure Button19Click(Sender: TObject);
     procedure Button17Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -52,6 +54,7 @@ type
 var
   Form1: TForm1;
   a, b: string;
+  c: integer;
   f, t, tt: int64;
 implementation
 
@@ -61,8 +64,8 @@ implementation
 procedure CalculateAndShowMethodTime(f, t, tt: Int64);
 begin
   // QueryPerformanceFrequency(f) - количество тактов процессора в секунду
-  // QueryPerformanceCounter показания(t) счётчиков такта перед выполннием метода
-  // QueryPerformanceCounter показания(tt) счётчиков такта после выполнения метода
+  // QueryPerformanceCounter(t) показания счётчиков такта перед выполннием метода
+  // QueryPerformanceCounter(tt) показания счётчиков такта после выполнения метода
 
   // Расчёт времени и вывод на экран
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
@@ -139,11 +142,44 @@ begin
   Edit1.Text := Edit1.Text + ' + ';
   b := a;
   a := '';
+  c := 1;
 end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+  Edit1.Text := Edit1.Text + ' - ';
+  b := a;
+  a := '';
+  c := 2;
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  Edit1.Text := Edit1.Text + ' / ';
+  b := a;
+  a := '';
+  c := 3;
+ end;
 
 procedure TForm1.Button5Click(Sender: TObject);
 begin
-   Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) + StrToFloat(b));
+   case c of
+     {+} 1 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) + StrToFloat(b));
+     {-} 2 :
+             Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) - StrToFloat(b));
+     {/} 3 :
+               if StrToFloat(b) <> 0 then
+               begin
+                 Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(a) / StrToFloat(b));
+               end
+               else
+               begin
+               ShowMessage('Кто разрешил на ноль делить?');
+               end;
+   end;
+
+
+
 end;
 
 
