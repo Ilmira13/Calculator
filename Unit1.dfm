@@ -1,6 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
+  ActiveControl = Edit1
   Caption = 'Calculator'
   ClientHeight = 506
   ClientWidth = 846
@@ -18,6 +19,7 @@ object Form1: TForm1
     Top = 233
     Width = 399
     Height = 21
+    Cursor = crHandPoint
     Alignment = taRightJustify
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False

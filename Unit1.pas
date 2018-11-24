@@ -52,6 +52,7 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
 
 
+
   private
     { Private declarations }
   public
@@ -121,6 +122,7 @@ begin
   Edit1.Text := Edit1.Text + temp;
   Edit2.Text := Edit2.Text + temp;
   Edit1.Text := a;
+  Edit1.SetFocus();
 end;
 
 procedure TForm1.Button10Click(Sender: TObject);
@@ -331,5 +333,7 @@ procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
   key := #0;
 end;
+
+
 
 end.
