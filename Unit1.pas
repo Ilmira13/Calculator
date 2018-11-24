@@ -80,11 +80,25 @@ procedure Oper(aa, bb : string; c : integer; Edit1, Edit2 : TEdit);
 begin
    Edit1.Text := '';
  case c of // предыдущий операнд
-  {не было} 0 : b := aa;
-  {+} 1 : b := FloatToStr(StrToFloat(bb) + StrToFloat(aa));
-  {-} 2 : b := FloatToStr(StrToFloat(bb) - StrToFloat(aa));
-  {*} 3 : b := FloatToStr(StrToFloat(bb) * StrToFloat(aa));
-  {/} 4 : if StrToFloat(aa) <> 0 then
+  0 : b := aa;
+  {+} 1 :
+  begin
+  b := FloatToStr(StrToFloat(bb) + StrToFloat(aa));
+  Edit2.Text := Edit2.Text + ' + ';
+  end;
+  {-} 2 :
+  begin
+  b := FloatToStr(StrToFloat(bb) - StrToFloat(aa));
+  Edit2.Text := Edit2.Text + ' - ';
+  end;
+  {*} 3 :
+  begin
+  b := FloatToStr(StrToFloat(bb) * StrToFloat(aa));
+  Edit2.Text := Edit2.Text + ' * ';
+  end;
+  {/} 4 :
+  begin
+  if StrToFloat(aa) <> 0 then
                begin
                   b := FloatToStr(StrToFloat(bb) / StrToFloat(aa));
                end
@@ -92,6 +106,8 @@ begin
                begin
                   ShowMessage('Деление на ноль');
                end;
+  Edit2.Text := Edit2.Text + ' / ';
+  end;
   end;
    bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
    a := '';
