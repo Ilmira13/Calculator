@@ -48,6 +48,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
+    procedure Edit2KeyPress(Sender: TObject; var Key: Char);
 
   private
     { Private declarations }
@@ -57,8 +58,8 @@ type
 
 var
   Form1: TForm1;
-  a, b: string;
-  c: integer;
+  a, b, bb: string;
+  c: integer = 0;
   f, t, tt: Int64;
 implementation
 
@@ -75,26 +76,31 @@ begin
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
 end;
 
-procedure Oper(a, b : string; c : integer);
+procedure Oper(aa, bb : string; c : integer; Edit1 : TEdit);
 begin
+   Edit1.Text := '';
  case c of // предыдущий операнд
-  {не было} 0 : b := a;
-  {+} 1 : b := FloatToStr(StrToFloat(b) + StrToFloat(a));
-  {-} 2 : b := FloatToStr(StrToFloat(b) - StrToFloat(a));
-  {*} 3 : b := FloatToStr(StrToFloat(b) * StrToFloat(a));
-  {/} 4 : if StrToFloat(a) <> 0 then
+  {не было} 0 : b := aa;
+  {+} 1 : b := FloatToStr(StrToFloat(bb) + StrToFloat(aa));
+  {-} 2 : b := FloatToStr(StrToFloat(bb) - StrToFloat(aa));
+  {*} 3 : b := FloatToStr(StrToFloat(bb) * StrToFloat(aa));
+  {/} 4 : if StrToFloat(aa) <> 0 then
                begin
-                  b := FloatToStr(StrToFloat(b) / StrToFloat(a));
+                  b := FloatToStr(StrToFloat(bb) / StrToFloat(aa));
                end
                else
                begin
                   ShowMessage('Деление на ноль');
                end;
   end;
+   bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
+   a := '';
+   Edit1.Text := bb;
 end;
 
 procedure TForm1.Button10Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '3';
   Edit1.Text := Edit1.Text + '3';
   Edit2.Text := Edit2.Text + '3';
@@ -102,6 +108,7 @@ end;
 
 procedure TForm1.Button11Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '4';
   Edit1.Text := Edit1.Text + '4';
   Edit2.Text := Edit2.Text + '4';
@@ -109,6 +116,7 @@ end;
 
 procedure TForm1.Button12Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '5';
   Edit1.Text := Edit1.Text + '5';
   Edit2.Text := Edit2.Text + '5';
@@ -116,6 +124,7 @@ end;
 
 procedure TForm1.Button13Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '6';
   Edit1.Text := Edit1.Text + '6';
   Edit2.Text := Edit2.Text + '6';
@@ -124,6 +133,7 @@ end;
 
 procedure TForm1.Button14Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '7';
   Edit1.Text := Edit1.Text + '7';
   Edit2.Text := Edit2.Text + '7';
@@ -131,6 +141,7 @@ end;
 
 procedure TForm1.Button15Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '8';
   Edit1.Text := Edit1.Text + '8';
   Edit2.Text := Edit2.Text + '8';
@@ -138,6 +149,7 @@ end;
 
 procedure TForm1.Button16Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '9';
   Edit1.Text := Edit1.Text + '9';
   Edit2.Text := Edit2.Text + '9';
@@ -145,6 +157,7 @@ end;
 
 procedure TForm1.Button17Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '0';
   Edit1.Text := Edit1.Text + '0';
   Edit2.Text := Edit2.Text + '0';
@@ -171,32 +184,28 @@ end;
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
   Edit2.Text := Edit2.Text + ' + ';
-  Oper(a, b, c);
-  a := '';
+  Oper(a, b, c, Edit1);
   c := 1;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
   Edit2.Text := Edit2.Text + ' - ';
-  Oper(a, b, c);
-  a := '';
+  Oper(a, b, c, Edit1);
   c := 2;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
   Edit2.Text := Edit2.Text + ' / ';
-  Oper(a, b, c);
-  a := '';
+  Oper(a, b, c, Edit1);
   c := 3;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
   Edit2.Text := Edit2.Text + ' * ';
-  Oper(a, b, c);
-  a := '';
+  Oper(a, b, c, Edit1);
   c := 4;
 end;
 
@@ -204,25 +213,10 @@ procedure TForm1.Button5Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
-   case c of
-     {+} 1 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) + StrToFloat(a));
-     {-} 2 :
-             Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) - StrToFloat(a));
-     {/} 3 :
-               if StrToFloat(a) <> 0 then
-               begin
-                 Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) / StrToFloat(a));
-               end
-               else
-               begin
-               ShowMessage('Деление на ноль');
-               end;
-     {*} 4 : Edit1.Text := Edit1.Text + ' = ' + FloatToStr(StrToFloat(b) * StrToFloat(a));
-   end;
+  Oper(a, b, c, Edit1);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
   Edit1.Text := Edit1.Text + '; '; // можно вводить новое выражени без очистки
-  a := '';
   b := '';
 end;
 
@@ -232,6 +226,7 @@ begin
   Edit1.Text := '';
   a := '';
   b := '';
+  c := 0;
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
@@ -241,16 +236,23 @@ end;
 
 procedure TForm1.Button8Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '1';
   Edit1.Text := Edit1.Text + '1';
 end;
 
 procedure TForm1.Button9Click(Sender: TObject);
 begin
+  Edit1.Text := '';
   a := a + '2';
   Edit1.Text := Edit1.Text + '2';
 end;
 
 
+
+procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
+begin
+  key := #0;
+end;
 
 end.

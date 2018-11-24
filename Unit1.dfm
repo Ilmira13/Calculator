@@ -202,5 +202,6 @@ object Form1: TForm1
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False
     TabOrder = 20
+    OnKeyPress = Edit2KeyPress
   end
 end
