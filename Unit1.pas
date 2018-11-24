@@ -250,75 +250,76 @@ end;
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
   case key of
-  '0':
+ #1..#7,#9..#29, #31..#44,#46,#47,#58..#95, #111..#255: key:=#0;
+  #30:
        begin
        key := #0;
        tmp('0', Edit1, Edit2);
        end;
-  '1':
+  #97:
        begin
        key := #0;
        tmp('1', Edit1, Edit2);
        end;
-  '2':
+  #98:
        begin
        key := #0;
        tmp('2', Edit1, Edit2);
        end;
-  '3':
+  #99:
        begin
        key := #0;
        tmp('3', Edit1, Edit2);
        end;
-  '4':
+  #100:
        begin
        key := #0;
        tmp('4', Edit1, Edit2);
        end;
-  '5':
+  #101:
        begin
        key := #0;
        tmp('5', Edit1, Edit2);
        end;
-  '6':
+  #102:
        begin
        key := #0;
        tmp('6', Edit1, Edit2);
        end;
-  '7':
+  #103:
        begin
        key := #0;
        tmp('7', Edit1, Edit2);
        end;
-  '8':
+  #104:
        begin
        key := #0;
        tmp('8', Edit1, Edit2);
        end;
-  '9':
+  #105:
        begin
        key := #0;
-       tmp('0', Edit1, Edit2);
+       tmp('9', Edit1, Edit2);
        end;
-  '+':
+  #107:
        begin
        Edit2.Text := Edit2.Text + ' + ';
        Oper(a, b, c, Edit1);
        c := 1;
        end;
-  '-':
+  #108:
        begin
        Edit2.Text := Edit2.Text + ' - ';
        Oper(a, b, c, Edit1);
        c := 2;
        end;
-  '*':
+  #106:
        begin
        Edit2.Text := Edit2.Text + ' * ';
        Oper(a, b, c, Edit1);
        c := 3;
        end;
-  '/':
+  #110:
        begin
        Edit2.Text := Edit2.Text + ' / ';
        Oper(a, b, c, Edit1);
