@@ -51,9 +51,7 @@ type
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
 
-
-
-  private
+private
     { Private declarations }
   public
     { Public declarations }
@@ -218,8 +216,6 @@ begin
   Oper(a, b, c, Edit1);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
-  Edit1.Text := Edit1.Text + '; '; // можно вводить новое выражени без очистки
-  b := '';
 end;
 
 
