@@ -58,7 +58,7 @@ type
 
 var
   Form1: TForm1;
-  a, b, bb: string;
+  a, b, bb, temp: string;
   c: integer = 0;
   f, t, tt: Int64;
 implementation
@@ -76,7 +76,7 @@ begin
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
 end;
 
-procedure Oper(aa, bb : string; c : integer; Edit1 : TEdit);
+procedure Oper(aa, bb : string; c : integer; Edit1, Edit2 : TEdit);
 begin
    Edit1.Text := '';
  case c of // предыдущий операнд
@@ -98,69 +98,54 @@ begin
    Edit1.Text := bb;
 end;
 
-procedure TForm1.Button10Click(Sender: TObject);
+procedure tmp (temp: string; Edit1, Edit2: TEdit);
 begin
   Edit1.Text := '';
-  a := a + '3';
-  Edit1.Text := Edit1.Text + '3';
-  Edit2.Text := Edit2.Text + '3';
+  a := a + temp;
+  Edit1.Text := Edit1.Text + temp;
+  Edit2.Text := Edit2.Text + temp;
+  Edit1.Text := a;
+end;
+
+procedure TForm1.Button10Click(Sender: TObject);
+begin
+  tmp('3', Edit1, Edit2);
 end;
 
 procedure TForm1.Button11Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '4';
-  Edit1.Text := Edit1.Text + '4';
-  Edit2.Text := Edit2.Text + '4';
+  tmp('4', Edit1, Edit2);
 end;
 
 procedure TForm1.Button12Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '5';
-  Edit1.Text := Edit1.Text + '5';
-  Edit2.Text := Edit2.Text + '5';
+  tmp('5', Edit1, Edit2);
 end;
 
 procedure TForm1.Button13Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '6';
-  Edit1.Text := Edit1.Text + '6';
-  Edit2.Text := Edit2.Text + '6';
+ tmp('6', Edit1, Edit2);
 
 end;
 
 procedure TForm1.Button14Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '7';
-  Edit1.Text := Edit1.Text + '7';
-  Edit2.Text := Edit2.Text + '7';
+ tmp('7', Edit1, Edit2);
 end;
 
 procedure TForm1.Button15Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '8';
-  Edit1.Text := Edit1.Text + '8';
-  Edit2.Text := Edit2.Text + '8';
+ tmp('8', Edit1, Edit2);
 end;
 
 procedure TForm1.Button16Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '9';
-  Edit1.Text := Edit1.Text + '9';
-  Edit2.Text := Edit2.Text + '9';
+ tmp('9', Edit1, Edit2);
 end;
 
 procedure TForm1.Button17Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '0';
-  Edit1.Text := Edit1.Text + '0';
-  Edit2.Text := Edit2.Text + '0';
+ tmp('0', Edit1, Edit2);
 end;
 
 procedure TForm1.Button18Click(Sender: TObject);
@@ -183,37 +168,36 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
-  Edit2.Text := Edit2.Text + ' + ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, Edit1, Edit2);
   c := 1;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
   Edit2.Text := Edit2.Text + ' - ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, Edit1, Edit2);
   c := 2;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
   Edit2.Text := Edit2.Text + ' / ';
-  Oper(a, b, c, Edit1);
-  c := 3;
+  Oper(a, b, c, Edit1, Edit2);
+  c := 4;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
   Edit2.Text := Edit2.Text + ' * ';
-  Oper(a, b, c, Edit1);
-  c := 4;
+  Oper(a, b, c, Edit1, Edit2);
+  c := 3;
 end;
 
 procedure TForm1.Button5Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, Edit1, Edit2);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
   Edit1.Text := Edit1.Text + '; '; // можно вводить новое выражени без очистки
@@ -224,6 +208,7 @@ end;
 procedure TForm1.Button6Click(Sender: TObject);
 begin
   Edit1.Text := '';
+  Edit2.Text := '';
   a := '';
   b := '';
   c := 0;
@@ -236,16 +221,12 @@ end;
 
 procedure TForm1.Button8Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '1';
-  Edit1.Text := Edit1.Text + '1';
+  tmp('1', Edit1, Edit2);
 end;
 
 procedure TForm1.Button9Click(Sender: TObject);
 begin
-  Edit1.Text := '';
-  a := a + '2';
-  Edit1.Text := Edit1.Text + '2';
+ tmp('2', Edit1, Edit2);
 end;
 
 

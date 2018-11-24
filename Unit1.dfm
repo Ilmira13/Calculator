@@ -59,8 +59,8 @@ object Form1: TForm1
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 234
-    Top = 284
+    Left = 396
+    Top = 377
     Width = 75
     Height = 25
     Caption = '='
