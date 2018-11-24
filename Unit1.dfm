@@ -18,9 +18,11 @@ object Form1: TForm1
     Top = 233
     Width = 399
     Height = 21
-    BiDiMode = bdRightToLeft
+    Alignment = taRightJustify
+    BiDiMode = bdLeftToRight
     ParentBiDiMode = False
     TabOrder = 0
+    OnKeyPress = Edit1KeyPress
   end
   object Button1: TButton
     Left = 315

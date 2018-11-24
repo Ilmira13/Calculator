@@ -49,6 +49,8 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+
 
   private
     { Private declarations }
@@ -84,17 +86,17 @@ begin
   {+} 1 :
   begin
   b := FloatToStr(StrToFloat(bb) + StrToFloat(aa));
-  Edit2.Text := Edit2.Text + ' + ';
+
   end;
   {-} 2 :
   begin
   b := FloatToStr(StrToFloat(bb) - StrToFloat(aa));
-  Edit2.Text := Edit2.Text + ' - ';
+
   end;
   {*} 3 :
   begin
   b := FloatToStr(StrToFloat(bb) * StrToFloat(aa));
-  Edit2.Text := Edit2.Text + ' * ';
+
   end;
   {/} 4 :
   begin
@@ -106,7 +108,7 @@ begin
                begin
                   ShowMessage('Деление на ноль');
                end;
-  Edit2.Text := Edit2.Text + ' / ';
+
   end;
   end;
    bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
@@ -166,10 +168,9 @@ end;
 
 procedure TForm1.Button18Click(Sender: TObject);
 begin
-  a := a + '.'; // точка или запятая, зависит от настроек в панели управления ->
-                // -> часы и регион -> региональные стандарты -> вкладка про числа
-  Edit1.Text := Edit1.Text + '.';
-  Edit2.Text := Edit2.Text + '.';
+// точка или запятая, зависит от настроек в панели управления ->
+// -> часы и регион -> региональные стандарты -> вкладка про числа
+    tmp('.', Edit1, Edit2);
 end;
 
 procedure TForm1.Button19Click(Sender: TObject);
@@ -184,13 +185,14 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
+  Edit2.Text := Edit2.Text + ' + ';
   Oper(a, b, c, Edit1, Edit2);
   c := 1;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
-  Edit2.Text := Edit2.Text + ' - ';
+    Edit2.Text := Edit2.Text + ' - ';
   Oper(a, b, c, Edit1, Edit2);
   c := 2;
 end;
@@ -245,7 +247,12 @@ begin
  tmp('2', Edit1, Edit2);
 end;
 
-
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+begin
+  case key of
+  '0'..'9': key := #0;
+  end;
+end;
 
 procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
