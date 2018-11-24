@@ -78,7 +78,7 @@ begin
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
 end;
 
-procedure Oper(aa, bb : string; c : integer; Edit1, Edit2 : TEdit);
+procedure Oper(aa, bb : string; c : integer; Edit1: TEdit);
 begin
    Edit1.Text := '';
  case c of // предыдущий операнд
@@ -86,7 +86,6 @@ begin
   {+} 1 :
   begin
   b := FloatToStr(StrToFloat(bb) + StrToFloat(aa));
-
   end;
   {-} 2 :
   begin
@@ -108,7 +107,6 @@ begin
                begin
                   ShowMessage('Деление на ноль');
                end;
-
   end;
   end;
    bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
@@ -186,28 +184,28 @@ end;
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
   Edit2.Text := Edit2.Text + ' + ';
-  Oper(a, b, c, Edit1, Edit2);
+  Oper(a, b, c, Edit1);
   c := 1;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
-    Edit2.Text := Edit2.Text + ' - ';
-  Oper(a, b, c, Edit1, Edit2);
+   Edit2.Text := Edit2.Text + ' - ';
+  Oper(a, b, c, Edit1);
   c := 2;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
   Edit2.Text := Edit2.Text + ' / ';
-  Oper(a, b, c, Edit1, Edit2);
+  Oper(a, b, c, Edit1);
   c := 4;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
   Edit2.Text := Edit2.Text + ' * ';
-  Oper(a, b, c, Edit1, Edit2);
+  Oper(a, b, c, Edit1);
   c := 3;
 end;
 
@@ -215,7 +213,7 @@ procedure TForm1.Button5Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
-  Oper(a, b, c, Edit1, Edit2);
+  Oper(a, b, c, Edit1);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
   Edit1.Text := Edit1.Text + '; '; // можно вводить новое выражени без очистки
@@ -250,7 +248,82 @@ end;
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
   case key of
-  '0'..'9': key := #0;
+  '0':
+       begin
+       key := #0;
+       tmp('0', Edit1, Edit2);
+       end;
+  '1':
+       begin
+       key := #0;
+       tmp('1', Edit1, Edit2);
+       end;
+  '2':
+       begin
+       key := #0;
+       tmp('2', Edit1, Edit2);
+       end;
+  '3':
+       begin
+       key := #0;
+       tmp('3', Edit1, Edit2);
+       end;
+  '4':
+       begin
+       key := #0;
+       tmp('4', Edit1, Edit2);
+       end;
+  '5':
+       begin
+       key := #0;
+       tmp('5', Edit1, Edit2);
+       end;
+  '6':
+       begin
+       key := #0;
+       tmp('6', Edit1, Edit2);
+       end;
+  '7':
+       begin
+       key := #0;
+       tmp('7', Edit1, Edit2);
+       end;
+  '8':
+       begin
+       key := #0;
+       tmp('8', Edit1, Edit2);
+       end;
+  '9':
+       begin
+       key := #0;
+       tmp('0', Edit1, Edit2);
+       end;
+  '+':
+       begin
+       Edit2.Text := Edit2.Text + ' + ';
+       Oper(a, b, c, Edit1);
+       c := 1;
+       end;
+  '-':
+       begin
+       Edit2.Text := Edit2.Text + ' - ';
+       Oper(a, b, c, Edit1);
+       c := 2;
+       end;
+  '*':
+       begin
+       Edit2.Text := Edit2.Text + ' * ';
+       Oper(a, b, c, Edit1);
+       c := 3;
+       end;
+  '/':
+       begin
+       Edit2.Text := Edit2.Text + ' / ';
+       Oper(a, b, c, Edit1);
+       c := 4;
+       end;
+
+
   end;
 end;
 
