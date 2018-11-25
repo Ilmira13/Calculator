@@ -49,6 +49,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
+    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
 
 
 private
@@ -197,7 +198,6 @@ if (Length(Edit1.Text) <> 0) and (y = 0) then
   Edit2.Text := Edit2.Text + ' + ';
   Oper(a, b, c, Edit1);
   c := 1;
-
   end;
 end;
 
@@ -248,6 +248,8 @@ begin
   a := '';
   b := '';
   c := 0;
+  y := 0;
+  u := 0;
 end;
 
 procedure TForm1.Button7Click(Sender: TObject);
@@ -265,79 +267,80 @@ begin
  tmp('2', Edit1, Edit2);
 end;
 
-{procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char); // ascii
 begin
   case key of
- #1..#7,#9..#29, #31..#44,#46,#47,#58..#95, #111..#255: key:=#0;
-  #30:
+ //#1..#7,#9..#29, #31..#44,#46,#47,#58..#95, #111..#255: key:=#0;
+  #187 : key:=#0; // должно быть +=
+  #48:
        begin
        key := #0;
        tmp('0', Edit1, Edit2);
        end;
-  #97:
+  #49:
        begin
        key := #0;
        tmp('1', Edit1, Edit2);
        end;
-  #98:
+  #50:
        begin
        key := #0;
        tmp('2', Edit1, Edit2);
        end;
-  #99:
+  #51:
        begin
        key := #0;
        tmp('3', Edit1, Edit2);
        end;
-  #100:
+  #52:
        begin
        key := #0;
        tmp('4', Edit1, Edit2);
        end;
-  #101:
+  #53:
        begin
        key := #0;
        tmp('5', Edit1, Edit2);
        end;
-  #102:
+  #54:
        begin
        key := #0;
        tmp('6', Edit1, Edit2);
        end;
-  #103:
+  #55:
        begin
        key := #0;
        tmp('7', Edit1, Edit2);
        end;
-  #104:
+  #56:
        begin
        key := #0;
        tmp('8', Edit1, Edit2);
        end;
-  #105:
+  #57:
        begin
        key := #0;
        tmp('9', Edit1, Edit2);
        end;
-  #107:
+  #43:
        begin
        Edit2.Text := Edit2.Text + ' + ';
        Oper(a, b, c, Edit1);
        c := 1;
        end;
-  #108:
+  #45:
        begin
        Edit2.Text := Edit2.Text + ' - ';
        Oper(a, b, c, Edit1);
        c := 2;
        end;
-  #106:
+  #42:
        begin
        Edit2.Text := Edit2.Text + ' * ';
        Oper(a, b, c, Edit1);
        c := 3;
        end;
-  #110:
+  #47:
        begin
        Edit2.Text := Edit2.Text + ' / ';
        Oper(a, b, c, Edit1);
@@ -346,7 +349,9 @@ begin
 
 
   end;
-end;  }
+end;
+
+
 
 procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin

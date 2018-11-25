@@ -24,6 +24,7 @@ object Form1: TForm1
     BiDiMode = bdLeftToRight
     ParentBiDiMode = False
     TabOrder = 0
+    OnKeyPress = Edit1KeyPress
   end
   object Button1: TButton
     Left = 267
