@@ -52,6 +52,7 @@ type
     procedure Edit1KeyPress(Sender: TObject; var Key: Char);
 
 
+
 private
     { Private declarations }
   public
@@ -267,11 +268,12 @@ begin
  tmp('2', Edit1, Edit2);
 end;
 
+
 procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char); // ascii
 begin
   case key of
  //#1..#7,#9..#29, #31..#44,#46,#47,#58..#95, #111..#255: key:=#0;
-  #187 : key:=#0; // должно быть +=
+  '+' : key:=#0; // должно быть +=
   #48:
        begin
        key := #0;
@@ -322,12 +324,12 @@ begin
        key := #0;
        tmp('9', Edit1, Edit2);
        end;
-  #43:
+ { #43:
        begin
        Edit2.Text := Edit2.Text + ' + ';
        Oper(a, b, c, Edit1);
        c := 1;
-       end;
+       end;  }
   #45:
        begin
        Edit2.Text := Edit2.Text + ' - ';
