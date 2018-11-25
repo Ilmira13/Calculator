@@ -49,7 +49,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
-    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+//    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
 
 private
     { Private declarations }
@@ -61,6 +61,7 @@ var
   Form1: TForm1;
   a, b, bb, temp: string;
   c: integer = 0;
+  u: integer = 0;
   f, t, tt: Int64;
 implementation
 
@@ -77,7 +78,7 @@ begin
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
 end;
 
-procedure Oper(aa, bb : string; c : integer; Edit1: TEdit);
+procedure Oper(aa, bb : string; c, uu: integer; Edit1: TEdit);
 begin
    Edit1.Text := '';
  case c of // предыдущий операнд
@@ -111,16 +112,21 @@ begin
    bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
    a := '';
    Edit1.Text := bb;
+   uu := 0; // можно вводить десятичный разделитель
+   u := uu; // махинации, аналогичные b
 end;
 
 procedure tmp (temp: string; Edit1, Edit2: TEdit);
 begin
+if (temp <> '.') or ((temp = '.') and (u = 0)) then
+  begin
   Edit1.Text := '';
   a := a + temp;
   Edit1.Text := Edit1.Text + temp;
   Edit2.Text := Edit2.Text + temp;
   Edit1.Text := a;
   Edit1.SetFocus();
+  end;
 end;
 
 procedure TForm1.Button10Click(Sender: TObject);
@@ -169,6 +175,7 @@ begin
 // точка или запятая, зависит от настроек в панели управления ->
 // -> часы и регион -> региональные стандарты -> вкладка про числа
     tmp('.', Edit1, Edit2);
+    u := 1;
 end;
 
 procedure TForm1.Button19Click(Sender: TObject);
@@ -184,28 +191,28 @@ end;
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
   Edit2.Text := Edit2.Text + ' + ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, u, Edit1);
   c := 1;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
    Edit2.Text := Edit2.Text + ' - ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, u, Edit1);
   c := 2;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
   Edit2.Text := Edit2.Text + ' / ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, u, Edit1);
   c := 4;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
   Edit2.Text := Edit2.Text + ' * ';
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, u, Edit1);
   c := 3;
 end;
 
@@ -213,7 +220,7 @@ procedure TForm1.Button5Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
-  Oper(a, b, c, Edit1);
+  Oper(a, b, c, u, Edit1);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
 end;
@@ -243,7 +250,7 @@ begin
  tmp('2', Edit1, Edit2);
 end;
 
-procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
+{procedure TForm1.Edit1KeyPress(Sender: TObject; var Key: Char);
 begin
   case key of
  #1..#7,#9..#29, #31..#44,#46,#47,#58..#95, #111..#255: key:=#0;
@@ -324,7 +331,7 @@ begin
 
 
   end;
-end;
+end;  }
 
 procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
