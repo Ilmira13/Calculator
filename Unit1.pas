@@ -190,30 +190,42 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
+if (Length(Edit1.Text) <> 0) then
+  begin
   Edit2.Text := Edit2.Text + ' + ';
   Oper(a, b, c, u, Edit1);
   c := 1;
+  end;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
+if (Length(Edit1.Text) <> 0) then
+  begin
    Edit2.Text := Edit2.Text + ' - ';
   Oper(a, b, c, u, Edit1);
   c := 2;
+  end;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
+if (Length(Edit1.Text) <> 0) then
+  begin
   Edit2.Text := Edit2.Text + ' / ';
   Oper(a, b, c, u, Edit1);
   c := 4;
+  end;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
+if (Length(Edit1.Text) <> 0) then
+  begin
   Edit2.Text := Edit2.Text + ' * ';
   Oper(a, b, c, u, Edit1);
   c := 3;
+  end;
 end;
 
 procedure TForm1.Button5Click(Sender: TObject);
