@@ -49,7 +49,7 @@ type
     procedure Button4Click(Sender: TObject);
     procedure Button7Click(Sender: TObject);
     procedure Edit2KeyPress(Sender: TObject; var Key: Char);
-//    procedure Edit1KeyPress(Sender: TObject; var Key: Char);
+
 
 private
     { Private declarations }
@@ -62,6 +62,7 @@ var
   a, b, bb, temp: string;
   c: integer = 0;
   u: integer = 0;
+  y: integer = 0;
   f, t, tt: Int64;
 implementation
 
@@ -78,7 +79,7 @@ begin
   ShowMessage('Время вычисления, с: ' + FloatToStr((tt - t) / f));
 end;
 
-procedure Oper(aa, bb : string; c, uu: integer; Edit1: TEdit);
+procedure Oper(aa, bb : string; c: integer; Edit1: TEdit);
 begin
    Edit1.Text := '';
  case c of // предыдущий операнд
@@ -112,11 +113,11 @@ begin
    bb := b; // почему-то b при выходе из функции возвращается в значение по умолчанию
    a := '';
    Edit1.Text := bb;
-   uu := 0; // можно вводить десятичный разделитель
-   u := uu; // махинации, аналогичные b
+   u := 0;
+   y := 1;
 end;
 
-procedure tmp (temp: string; Edit1, Edit2: TEdit);
+procedure tmp (temp: string;  Edit1, Edit2: TEdit);
 begin
 if (temp <> '.') or ((temp = '.') and (u = 0)) then
   begin
@@ -126,6 +127,7 @@ if (temp <> '.') or ((temp = '.') and (u = 0)) then
   Edit2.Text := Edit2.Text + temp;
   Edit1.Text := a;
   Edit1.SetFocus();
+  y := 0;
   end;
 end;
 
@@ -190,40 +192,41 @@ end;
 
 procedure TForm1.Button1Click(Sender: TObject); // +
 begin
-if (Length(Edit1.Text) <> 0) then
+if (Length(Edit1.Text) <> 0) and (y = 0) then
   begin
   Edit2.Text := Edit2.Text + ' + ';
-  Oper(a, b, c, u, Edit1);
+  Oper(a, b, c, Edit1);
   c := 1;
+
   end;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject); // -
 begin
-if (Length(Edit1.Text) <> 0) then
+if (Length(Edit1.Text) <> 0) and (y = 0) then
   begin
    Edit2.Text := Edit2.Text + ' - ';
-  Oper(a, b, c, u, Edit1);
+  Oper(a, b, c, Edit1);
   c := 2;
   end;
 end;
 
 procedure TForm1.Button3Click(Sender: TObject); // /
 begin
-if (Length(Edit1.Text) <> 0) then
+if (Length(Edit1.Text) <> 0) and (y = 0) then
   begin
   Edit2.Text := Edit2.Text + ' / ';
-  Oper(a, b, c, u, Edit1);
+  Oper(a, b, c, Edit1);
   c := 4;
   end;
  end;
 
 procedure TForm1.Button4Click(Sender: TObject); // *
 begin
-if (Length(Edit1.Text) <> 0) then
+if (Length(Edit1.Text) <> 0) and (y = 0) then
   begin
   Edit2.Text := Edit2.Text + ' * ';
-  Oper(a, b, c, u, Edit1);
+  Oper(a, b, c, Edit1);
   c := 3;
   end;
 end;
@@ -232,7 +235,7 @@ procedure TForm1.Button5Click(Sender: TObject);
 begin
   QueryPerformanceFrequency(f);
   QueryPerformanceCounter(t);
-  Oper(a, b, c, u, Edit1);
+  Oper(a, b, c, Edit1);
   QueryPerformanceCounter(tt);
   CalculateAndShowMethodTime(f, t, tt);
 end;
@@ -349,6 +352,8 @@ procedure TForm1.Edit2KeyPress(Sender: TObject; var Key: Char);
 begin
   key := #0;
 end;
+
+
 
 
 
